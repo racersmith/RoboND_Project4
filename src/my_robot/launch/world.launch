@@ -32,7 +32,10 @@
               -x $(arg x) -y $(arg y) -z $(arg z)
               -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
               
-  <!-- Lauch Rviz -->
+  <!-- Launch the drive bot service node -->
+  <node name="drive_bot" type="drive_bot" pkg="drive_bot" output="screen"/>
+              
+  <!-- Launch Rviz -->
   <node name="rviz" pkg="rviz" type="rviz" respawn="false"/>
 
 
