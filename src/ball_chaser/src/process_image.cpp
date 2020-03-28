@@ -8,19 +8,52 @@ ros::ServiceClient client;
 // This function calls the command_robot service to drive the robot in the specified direction
 void drive_robot(float lin_x, float ang_z)
 {
-    // TODO: Request a service and pass the velocities to it to drive the robot
+  // Build service call
+  ball_chaser/DriveToTarget srv;
+  srv.request.linear_x = lin_x;
+  srv.request.angular_z = ang_z;
+  
+  if (!client.call(srv)) {
+    ROS_ERROR("Failed to call DriveToTarget service!");
+  }
+  
 }
 
 // This callback function continuously executes and reads the image data
 void process_image_callback(const sensor_msgs::Image img)
 {
 
-    int white_pixel = 255;
+    int target_color = 255;
+    float rotation_rate = 1e-3;
+    float linear_rate = 1e-3
 
-    // TODO: Loop through each pixel in the image and check if there's a bright white one
-    // Then, identify if this pixel falls in the left, mid, or right side of the image
-    // Depending on the white ball position, call the drive_bot function and pass velocities to it
-    // Request a stop when there's no white ball seen by the camera
+    // Number of pixels in a row to detect a ball
+    int detection_theshold = 10;
+    
+    int peak_col_index = 0;
+    int peak_count = 0;
+    
+    for (int col=0; col<img.width; col++){
+      col_count = 0;
+      for (int row=0; row<img.height; row++{
+        if (data[col + row * img.step] == target_color){
+          col_count++;
+        }
+      if (col_count > peak_count){
+        peak_cont = col_count;
+        peak_col_index = col;
+      }
+    
+    float linear = 0.0;
+    float rotation = 0.0;
+    
+    if (peak_count > detection_theshold) {
+      // the further away the ball is the faster we go
+      linear = linear_rate/(float)peak_count
+      
+      // the further from center the ball is the faster we rotate towards it
+      rotation = rotation_rate/((float)img.width/2 - peak_col_index)
+    }
 }
 
 int main(int argc, char** argv)
