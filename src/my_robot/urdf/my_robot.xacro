@@ -67,6 +67,21 @@
         <sphere radius="0.05"/>
       </geometry>
     </visual>
+    
+    
+    <collision name='cover_collision'>
+      <origin xyz="0 0 0.15" rpy=" 0 0 0"/>
+      <geometry>
+        <cylinder radius="0.25" length="0.01"/> 
+      </geometry>
+    </collision>
+
+    <visual name='cover_visual'>
+      <origin xyz="0 0 0.15" rpy=" 0 0 0"/>
+      <geometry>
+        <cylinder radius="0.25" length="0.01"/>
+      </geometry>
+    </visual>
   </link>
   
   <link name='left_wheel'>
