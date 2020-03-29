@@ -23,7 +23,10 @@ void drive_robot(float lin_x, float ang_z)
 void process_image_callback(const sensor_msgs::Image img)
 {
 
-    int target_color = 255;
+    int target_red = 255;
+    int target_green = 255;
+    int target_blue = 255;
+    
     float rotation_rate = 1e-3;
     float linear_rate = 1e-3;
 
@@ -33,18 +36,29 @@ void process_image_callback(const sensor_msgs::Image img)
     int peak_col_index = 0;
     int peak_count = 0;
     
+    // image is 800x800 with 2400 per row.
+    // is the image stored r,g,b,r,g,b...
+    // is the image stored r,r,..,g,g,..,b,b,.. I think it is this.
+    
     for (int col=0; col<img.width; col++){
       int col_count = 0;
       for (int row=0; row<img.height; row++) {
-        if (img.data[col + row * img.step] == target_color) {
+        int red =   img.data[3*col + row*img.step + 0];
+        int green = img.data[3*col + row*img.step + 1];
+	      int blue =  img.data[3*col + row*img.step + 2];
+		
+        if (red == target_red && green == target_green && blue == target_blue) {
           col_count++;
         }
       }
+      
       if (col_count > peak_count){
         peak_count = col_count;
         peak_col_index = col;
       }
     }
+    
+    ROS_INFO_STREAM("Detected " + std::to_string(peak_count) + " target color pixels"); 
     
     float linear = 0.0;
     float rotation = 0.0;
