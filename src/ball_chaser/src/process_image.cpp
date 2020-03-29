@@ -28,7 +28,7 @@ void process_image_callback(const sensor_msgs::Image img)
     int target_blue = 255;
     
     float rotation_rate = 1.0;
-    float linear_rate = 0.0;
+    float linear_rate = 0.2;
 
     // Number of pixels in a row to detect a ball
     int detection_theshold = 10;
@@ -79,7 +79,7 @@ void process_image_callback(const sensor_msgs::Image img)
       
       // the further away the ball is the faster we go
       float fill_ratio = (float)peak_count/(float)img.width;
-      linear = linear_rate/fill_ratio * (1-pos_ratio);
+      linear = linear_rate * (1.0 - fill_ratio) * (1.0-fabs(pos_ratio));
       ROS_INFO_STREAM("pos_ratio: " + std::to_string(pos_ratio));
       ROS_INFO_STREAM("fill_ratio: " + std::to_string(fill_ratio));
     }
