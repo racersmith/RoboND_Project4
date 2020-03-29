@@ -27,14 +27,16 @@ void process_image_callback(const sensor_msgs::Image img)
     int target_green = 255;
     int target_blue = 255;
     
-    float rotation_rate = 1e-3;
-    float linear_rate = 1e-3;
+    float rotation_rate = 1.0;
+    float linear_rate = 0.0;
 
     // Number of pixels in a row to detect a ball
     int detection_theshold = 10;
     
     int peak_col_index = 0;
     int peak_count = 0;
+    float weight_sum = 0.0;
+    float value_sum = 0.0;
     
     // image is 800x800 with 2400 per row.
     // is the image stored r,g,b,r,g,b...
@@ -47,6 +49,7 @@ void process_image_callback(const sensor_msgs::Image img)
         int green = img.data[3*col + row*img.step + 1];
 	      int blue =  img.data[3*col + row*img.step + 2];
 		
+		    // Check for our target color
         if (red == target_red && green == target_green && blue == target_blue) {
           col_count++;
         }
@@ -56,6 +59,8 @@ void process_image_callback(const sensor_msgs::Image img)
         peak_count = col_count;
         peak_col_index = col;
       }
+      value_sum += col * col_count;
+      weight_sum += col_count;
     }
     
     ROS_INFO_STREAM("Detected " + std::to_string(peak_count) + " target color pixels"); 
@@ -64,11 +69,19 @@ void process_image_callback(const sensor_msgs::Image img)
     float rotation = 0.0;
     
     if (peak_count >= detection_theshold) {
-      // the further away the ball is the faster we go
-      linear = linear_rate/(float)peak_count;
-      
+      float position = value_sum/weight_sum;
       // the further from center the ball is the faster we rotate towards it
-      rotation = rotation_rate/((float)img.width/2 - peak_col_index);
+      float half_width = (float)img.width/2.0;
+      float pos_ratio = (half_width - position)/half_width;
+       
+
+      rotation = rotation_rate * pos_ratio;
+      
+      // the further away the ball is the faster we go
+      float fill_ratio = (float)peak_count/(float)img.width;
+      linear = linear_rate/fill_ratio * (1-pos_ratio);
+      ROS_INFO_STREAM("pos_ratio: " + std::to_string(pos_ratio));
+      ROS_INFO_STREAM("fill_ratio: " + std::to_string(fill_ratio));
     }
     
     // Make a call to the drive service
