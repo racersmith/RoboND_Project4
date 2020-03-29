@@ -81,7 +81,7 @@
       <geometry>
         <cylinder radius="0.25" length="0.01"/>
       </geometry>
-    </visual>
+    </visual> 
   </link>
   
   <link name='left_wheel'>
@@ -225,20 +225,21 @@
   </joint>
   
   <gazebo reference="left_wheel">
-    <material>Gazebo/Green</material>
+    <material>Gazebo/Black</material>
   </gazebo>
   
   <gazebo reference="right_wheel">
-    <material>Gazebo/Green</material>
+    <material>Gazebo/Black</material>
   </gazebo>
   
   <gazebo reference="chassis">
-    <material>Gazebo/Blue</material>
+    <material>Gazebo/Black</material>
   </gazebo>
   
   <gazebo reference="camera">
     <material>Gazebo/Red</material>
   </gazebo>
+  
   
 </robot>
 
