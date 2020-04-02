@@ -5542,7 +5542,7 @@
       <link name='link_2'>
         <pose frame=''>0.012232 -0 -0.27143 0 -0 0</pose>
         <inertial>
-          <mass>1</mass>
+          <mass>0.11</mass>
           <inertia>
             <ixx>0.145833</ixx>
             <ixy>0</ixy>
@@ -5640,7 +5640,7 @@
       <link name='link_3'>
         <pose frame=''>0.012232 -0 0.728572 0 -0 0</pose>
         <inertial>
-          <mass>1</mass>
+          <mass>0.1</mass>
           <inertia>
             <ixx>0.166667</ixx>
             <ixy>0</ixy>
@@ -5736,7 +5736,7 @@
       <link name='link_5'>
         <pose frame=''>0.092232 -0.12 0.728571 0 -0 0</pose>
         <inertial>
-          <mass>1</mass>
+          <mass>0.1</mass>
           <inertia>
             <ixx>0.145833</ixx>
             <ixy>0</ixy>
@@ -5834,7 +5834,7 @@
       <link name='link_5_clone'>
         <pose frame=''>0.092232 0.12 0.728571 0 -0 0</pose>
         <inertial>
-          <mass>1</mass>
+          <mass>0.1</mass>
           <inertia>
             <ixx>0.145833</ixx>
             <ixy>0</ixy>
@@ -5932,7 +5932,7 @@
       <link name='link_6'>
         <pose frame=''>-0.062768 -0 0.728572 1.57079 -0 0</pose>
         <inertial>
-          <mass>1</mass>
+          <mass>0.1</mass>
           <inertia>
             <ixx>0.145833</ixx>
             <ixy>0</ixy>
@@ -6478,7 +6478,7 @@
       <link name='link_2'>
         <pose frame=''>0.012232 -0 -0.27143 0 -0 0</pose>
         <inertial>
-          <mass>1</mass>
+          <mass>0.1</mass>
           <inertia>
             <ixx>0.145833</ixx>
             <ixy>0</ixy>
@@ -6576,7 +6576,7 @@
       <link name='link_3'>
         <pose frame=''>0.012232 -0 0.728572 0 -0 0</pose>
         <inertial>
-          <mass>1</mass>
+          <mass>0.1</mass>
           <inertia>
             <ixx>0.166667</ixx>
             <ixy>0</ixy>
@@ -6672,7 +6672,7 @@
       <link name='link_5'>
         <pose frame=''>0.092232 -0.12 0.728571 0 -0 0</pose>
         <inertial>
-          <mass>1</mass>
+          <mass>0.1</mass>
           <inertia>
             <ixx>0.145833</ixx>
             <ixy>0</ixy>
@@ -6770,7 +6770,7 @@
       <link name='link_5_clone'>
         <pose frame=''>0.092232 0.12 0.728571 0 -0 0</pose>
         <inertial>
-          <mass>1</mass>
+          <mass>0.1</mass>
           <inertia>
             <ixx>0.145833</ixx>
             <ixy>0</ixy>
@@ -6868,7 +6868,7 @@
       <link name='link_6'>
         <pose frame=''>-0.062768 -0 0.728572 1.57079 -0 0</pose>
         <inertial>
-          <mass>1</mass>
+          <mass>0.1</mass>
           <inertia>
             <ixx>0.145833</ixx>
             <ixy>0</ixy>
